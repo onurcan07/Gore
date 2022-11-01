@@ -58,7 +58,6 @@ func GroceriesToBuy(w http.ResponseWriter, r *http.Request) {
 	groceries = append(groceries, grocery)
 
 	json.NewEncoder(w).Encode(groceries)
-
 }
 
 func DeleteGrocery(w http.ResponseWriter, r *http.Request) {
