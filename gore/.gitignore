@@ -1,0 +1,7 @@
+.bin/
+.docker/
+test/mocks/
+id
+
+# Visual Studio Code
+.vscode
