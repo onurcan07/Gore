@@ -21,7 +21,7 @@ func New(db *gorm.DB) handler {
 	return handler{db}
 }
 
-func (h handler) CreateBook(w http.ResponseWriter, r *http.Request) {
+func (h handler) Create(w http.ResponseWriter, r *http.Request) {
 
 	defer r.Body.Close()
 	body, err := ioutil.ReadAll(r.Body)
@@ -42,7 +42,7 @@ func (h handler) CreateBook(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(book)
 }
 
-func (h handler) DeleteBook(w http.ResponseWriter, r *http.Request) {
+func (h handler) Delete(w http.ResponseWriter, r *http.Request) {
 
 	vars := mux.Vars(r)
 	id, _ := strconv.Atoi(vars["id"])
@@ -60,7 +60,7 @@ func (h handler) DeleteBook(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode("Deleted")
 }
 
-func (h handler) GetAllBooks(w http.ResponseWriter, r *http.Request) {
+func (h handler) Get(w http.ResponseWriter, r *http.Request) {
 	var books []models.Book
 
 	if result := h.DB.Find(&books); result.Error != nil {
@@ -72,7 +72,7 @@ func (h handler) GetAllBooks(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(books)
 }
 
-func (h handler) GetBook(w http.ResponseWriter, r *http.Request) {
+func (h handler) GetById(w http.ResponseWriter, r *http.Request) {
 
 	vars := mux.Vars(r)
 	id, _ := strconv.Atoi(vars["id"])
@@ -88,7 +88,7 @@ func (h handler) GetBook(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(book)
 }
 
-func (h handler) UpdateBook(w http.ResponseWriter, r *http.Request) {
+func (h handler) Update(w http.ResponseWriter, r *http.Request) {
 
 	vars := mux.Vars(r)
 	id, _ := strconv.Atoi(vars["id"])
