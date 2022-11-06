@@ -4,12 +4,13 @@ import (
 	"log"
 
 	"github.com/gore/models"
+	"github.com/spf13/viper"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 func Init() *gorm.DB {
-	dbURL := "postgres://postgres:postgres!@localhost:5432/gore"
+	dbURL := viper.GetString("POSTGRES_CONNECTION_STRING")
 
 	db, err := gorm.Open(postgres.Open(dbURL), &gorm.Config{})
 
@@ -18,6 +19,7 @@ func Init() *gorm.DB {
 	}
 
 	db.AutoMigrate(&models.Book{})
+	db.AutoMigrate(&models.User{})
 
 	return db
 }
