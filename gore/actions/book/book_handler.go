@@ -111,7 +111,7 @@ func (h handler) Update(w http.ResponseWriter, r *http.Request) {
 
 	book.Title = updatedBook.Title
 	book.Author = updatedBook.Author
-	book.Desc = updatedBook.Desc
+	book.Description = updatedBook.Description
 
 	h.DB.Save(&book)
 

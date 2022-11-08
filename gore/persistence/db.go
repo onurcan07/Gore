@@ -3,7 +3,6 @@ package persistence
 import (
 	"log"
 
-	"github.com/gore/models"
 	"github.com/spf13/viper"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -17,9 +16,6 @@ func Init() *gorm.DB {
 	if err != nil {
 		log.Fatalln(err)
 	}
-
-	db.AutoMigrate(&models.Book{})
-	db.AutoMigrate(&models.User{})
 
 	return db
 }
